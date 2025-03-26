@@ -132,12 +132,12 @@ export function ImageCompare({
           style={{ width: `${sliderPosition}%` }}
         >
           <span className="rounded bg-black/60 px-2 py-1 text-sm text-white">
-            Original
+            AI Art
           </span>
         </div>
         <div className="flex w-full items-end justify-end p-4">
           <span className="rounded bg-black/60 px-2 py-1 text-sm text-white">
-            AI Art
+            AI Original
           </span>
         </div>
       </div>
