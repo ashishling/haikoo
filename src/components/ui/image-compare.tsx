@@ -137,7 +137,7 @@ export function ImageCompare({
         </div>
         <div className="flex w-full items-end justify-end p-4">
           <span className="rounded bg-black/60 px-2 py-1 text-sm text-white">
-            AI Original
+            Original
           </span>
         </div>
       </div>
