@@ -42,10 +42,20 @@ export function WaitlistForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
     try {
-      // Here you would typically make an API call to your backend
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // Simulated API call
-      setIsSuccess(true)
-      form.reset()
+      // Let Netlify handle the form submission
+      const formData = new FormData();
+      Object.entries(values).forEach(([key, value]) => {
+        formData.append(key, value.toString());
+      });
+      
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData as any).toString()
+      });
+      
+      setIsSuccess(true);
+      form.reset();
     } catch (error) {
       console.error("Error submitting form:", error)
     } finally {
@@ -109,7 +119,10 @@ export function WaitlistForm() {
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
                   className="space-y-6"
+                  data-netlify="true"
+                  name="waitlist"
                 >
+                  <input type="hidden" name="form-name" value="waitlist" />
                   <FormField
                     control={form.control}
                     name="email"
