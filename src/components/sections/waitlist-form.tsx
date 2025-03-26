@@ -121,8 +121,10 @@ export function WaitlistForm() {
                   className="space-y-6"
                   data-netlify="true"
                   name="waitlist"
+                  method="POST"
                 >
                   <input type="hidden" name="form-name" value="waitlist" />
+                  <input type="hidden" name="bot-field" />
                   <FormField
                     control={form.control}
                     name="email"
