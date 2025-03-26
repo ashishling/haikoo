@@ -77,7 +77,7 @@ export const siteConfig = {
   // Waitlist Form
   waitlistForm: {
     title: "Join the Waitlist",
-    description: "Be among the first to experience PetFrame AI.",
+    description: "Be among the first to experience Haikoo",
     successMessage: "Thanks for joining! We'll be in touch soon.",
     fields: {
       email: {
