@@ -17,12 +17,17 @@ import {
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { siteConfig } from "@/config/site"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Textarea } from "@/components/ui/textarea"
 
 const formSchema = z.object({
+  name: z.string().min(1, "Please enter your name"),
   email: z.string().email("Please enter a valid email address"),
   petName: z.string().optional(),
-  petType: z.string().optional(),
-  betaTester: z.boolean().default(false),
+  petType: z.enum(["cat", "dog", "other"]),
+  frameSize: z.enum(["small", "medium", "large", "other"]),
+  priceRange: z.string().min(1, "Please enter a price range"),
+  suggestions: z.string().optional()
 })
 
 export function WaitlistForm() {
@@ -32,10 +37,13 @@ export function WaitlistForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: "",
       email: "",
       petName: "",
-      petType: "",
-      betaTester: false,
+      petType: "dog",
+      frameSize: "medium",
+      priceRange: "",
+      suggestions: ""
     },
   })
 
@@ -74,10 +82,13 @@ export function WaitlistForm() {
     <>
       {/* Hidden form for Netlify to detect at build time */}
       <form name="waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
         <input type="email" name="email" />
         <input type="text" name="petName" />
-        <input type="text" name="petType" />
-        <input type="checkbox" name="betaTester" />
+        <input type="radio" name="petType" />
+        <input type="radio" name="frameSize" />
+        <input type="text" name="priceRange" />
+        <input type="text" name="suggestions" />
       </form>
 
       <section id="join" className="relative overflow-hidden bg-secondary/30 py-20 md:py-32">
@@ -141,19 +152,34 @@ export function WaitlistForm() {
                   >
                     <input type="hidden" name="form-name" value="waitlist" />
                     <input type="hidden" name="bot-field" />
+                    
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>{siteConfig.waitlistForm.fields.name.label}</FormLabel>
+                          <FormControl>
+                            <Input
+                              placeholder={siteConfig.waitlistForm.fields.name.placeholder}
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
                     <FormField
                       control={form.control}
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            {siteConfig.waitlistForm.fields.email.label}
-                          </FormLabel>
+                          <FormLabel>{siteConfig.waitlistForm.fields.email.label}</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder={
-                                siteConfig.waitlistForm.fields.email.placeholder
-                              }
+                              type="email"
+                              placeholder={siteConfig.waitlistForm.fields.email.placeholder}
                               {...field}
                             />
                           </FormControl>
@@ -167,14 +193,10 @@ export function WaitlistForm() {
                       name="petName"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            {siteConfig.waitlistForm.fields.petName.label}
-                          </FormLabel>
+                          <FormLabel>{siteConfig.waitlistForm.fields.petName.label}</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder={
-                                siteConfig.waitlistForm.fields.petName.placeholder
-                              }
+                              placeholder={siteConfig.waitlistForm.fields.petName.placeholder}
                               {...field}
                             />
                           </FormControl>
@@ -187,15 +209,69 @@ export function WaitlistForm() {
                       control={form.control}
                       name="petType"
                       render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel>{siteConfig.waitlistForm.fields.petType.label}</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex flex-col space-y-1"
+                            >
+                              {siteConfig.waitlistForm.fields.petType.options.map((option) => (
+                                <FormItem key={option.value} className="flex items-center space-x-3 space-y-0">
+                                  <FormControl>
+                                    <RadioGroupItem value={option.value} />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    {option.label}
+                                  </FormLabel>
+                                </FormItem>
+                              ))}
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="frameSize"
+                      render={({ field }) => (
+                        <FormItem className="space-y-3">
+                          <FormLabel>{siteConfig.waitlistForm.fields.frameSize.label}</FormLabel>
+                          <FormControl>
+                            <RadioGroup
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                              className="flex flex-col space-y-1"
+                            >
+                              {siteConfig.waitlistForm.fields.frameSize.options.map((option) => (
+                                <FormItem key={option.value} className="flex items-center space-x-3 space-y-0">
+                                  <FormControl>
+                                    <RadioGroupItem value={option.value} />
+                                  </FormControl>
+                                  <FormLabel className="font-normal">
+                                    {option.label}
+                                  </FormLabel>
+                                </FormItem>
+                              ))}
+                            </RadioGroup>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="priceRange"
+                      render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            {siteConfig.waitlistForm.fields.petType.label}
-                          </FormLabel>
+                          <FormLabel>{siteConfig.waitlistForm.fields.priceRange.label}</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder={
-                                siteConfig.waitlistForm.fields.petType.placeholder
-                              }
+                              placeholder={siteConfig.waitlistForm.fields.priceRange.placeholder}
                               {...field}
                             />
                           </FormControl>
@@ -206,20 +282,18 @@ export function WaitlistForm() {
 
                     <FormField
                       control={form.control}
-                      name="betaTester"
+                      name="suggestions"
                       render={({ field }) => (
-                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormItem>
+                          <FormLabel>{siteConfig.waitlistForm.fields.suggestions.label}</FormLabel>
                           <FormControl>
-                            <Checkbox
-                              checked={field.value}
-                              onCheckedChange={field.onChange}
+                            <Textarea
+                              placeholder={siteConfig.waitlistForm.fields.suggestions.placeholder}
+                              className="min-h-[100px]"
+                              {...field}
                             />
                           </FormControl>
-                          <div className="space-y-1 leading-none">
-                            <FormLabel>
-                              {siteConfig.waitlistForm.fields.betaTester.label}
-                            </FormLabel>
-                          </div>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
