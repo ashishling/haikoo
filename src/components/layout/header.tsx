@@ -20,14 +20,14 @@ export function Header() {
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2" onClick={scrollToSection}>
             <Image
-              src="/images/logos/logo-dark.png"
+              src="/images/logos/logo-dark.svg"
               alt={siteConfig.name}
               width={120}
               height={32}
               className="hidden dark:block"
             />
             <Image
-              src="/images/logos/logo-light.png"
+              src="/images/logos/logo-light.svg"
               alt={siteConfig.name}
               width={120}
               height={32}
