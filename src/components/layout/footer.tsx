@@ -1,7 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
 import { siteConfig } from "@/config/site"
-import { Facebook, Instagram, Twitter } from "lucide-react"
 
 export function Footer() {
   return (
@@ -48,9 +47,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact and Social */}
+          {/* Contact */}
           <div className="space-y-4">
-            <h3 className="text-sm font-medium">Connect</h3>
+            <h3 className="text-sm font-medium">Contact</h3>
             <p className="text-sm text-muted-foreground">
               Questions? Email us at{" "}
               <a
@@ -60,35 +59,6 @@ export function Footer() {
                 {siteConfig.company.support.email}
               </a>
             </p>
-            <div className="flex space-x-4">
-              <Link
-                href={siteConfig.social.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Twitter className="h-5 w-5" />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link
-                href={siteConfig.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Instagram className="h-5 w-5" />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link
-                href={siteConfig.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Facebook className="h-5 w-5" />
-                <span className="sr-only">Facebook</span>
-              </Link>
-            </div>
           </div>
         </div>
 

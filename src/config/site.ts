@@ -6,7 +6,7 @@ export const siteConfig = {
   company: {
     name: "Haikoo",
     support: {
-      email: "support@haikoo.com"
+      email: "ashishling@gmail.com"
     }
   },
 
