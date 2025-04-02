@@ -30,7 +30,7 @@ export default function SwiperComponent({ photos }: SwiperComponentProps) {
   }
 
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden rounded-[1.25rem]">
       <Swiper
         modules={[Autoplay, EffectCreative]}
         effect="creative"
@@ -68,12 +68,12 @@ export default function SwiperComponent({ photos }: SwiperComponentProps) {
                 priority={index === 0}
                 loading={index === 0 ? "eager" : "lazy"}
                 onLoadingComplete={() => handleImageLoad(index)}
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes="(max-width: 640px) 90vw, (max-width: 768px) 320px, (max-width: 1024px) 360px, 400px"
                 quality={85}
               />
               {!loadedImages.has(index) && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black">
-                  <div className="w-8 h-8 border-4 border-gray-600 border-t-white rounded-full animate-spin" />
+                  <div className="w-6 h-6 border-3 border-gray-600 border-t-white rounded-full animate-spin" />
                 </div>
               )}
             </div>

@@ -26,7 +26,7 @@ export function Hero() {
       </div>
 
       <div className="container relative z-10 px-4 sm:px-6 md:px-8">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-16">
+        <div className="grid items-center gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -115,7 +115,7 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative mx-auto w-full max-w-[90vw] sm:max-w-md md:max-w-xl"
+            className="relative mx-auto w-full max-w-[80vw] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[400px]"
           >
             <PhotoCarousel />
           </motion.div>
