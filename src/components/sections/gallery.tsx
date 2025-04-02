@@ -87,11 +87,11 @@ export function Gallery() {
               {/* Digital Frame Container */}
               <div className="relative w-full">
                 {/* Frame Border */}
-                <div className="relative rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 p-4 shadow-2xl">
+                <div className="relative rounded-[2rem] bg-black p-3 shadow-2xl">
                   {/* Frame Inner Bezel */}
-                  <div className="relative rounded-[1.5rem] bg-black p-2">
+                  <div className="relative rounded-[1.75rem] bg-black p-1.5">
                     {/* Screen Glass Effect */}
-                    <div className="relative overflow-hidden rounded-[1.25rem] bg-black">
+                    <div className="relative overflow-hidden rounded-[1.5rem] bg-black">
                       {/* Screen Glare */}
                       <div className="absolute inset-0 z-10 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
                       

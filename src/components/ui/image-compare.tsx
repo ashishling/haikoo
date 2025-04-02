@@ -64,7 +64,7 @@ export function ImageCompare({
   return (
     <div
       ref={containerRef}
-      className={`group relative ${aspectRatio} w-full overflow-hidden rounded-xl`}
+      className={`group relative ${aspectRatio} w-full overflow-hidden rounded-[1.5rem]`}
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
       onMouseUp={handleMouseUp}

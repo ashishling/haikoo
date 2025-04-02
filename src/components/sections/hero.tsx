@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll"
-import { ImageCompare } from "@/components/ui/image-compare"
+import { PhotoCarousel } from "@/components/ui/photo-carousel"
 
 export function Hero() {
   const { scrollToSection } = useSmoothScroll()
@@ -109,38 +109,14 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Image Comparison Slider */}
+          {/* Photo Carousel */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="relative mx-auto w-full max-w-xl"
           >
-            {/* Digital Frame Container */}
-            <div className="relative w-full">
-              {/* Frame Border */}
-              <div className="relative rounded-lg bg-gradient-to-b from-gray-800 to-gray-900 p-4 shadow-2xl">
-                {/* Frame Inner Bezel */}
-                <div className="relative rounded-[1.5rem] bg-black p-2">
-                  {/* Screen Glass Effect */}
-                  <div className="relative overflow-hidden rounded-[1.25rem] bg-black">
-                    {/* Screen Glare */}
-                    <div className="absolute inset-0 z-10 bg-gradient-to-br from-white/10 to-transparent pointer-events-none"></div>
-                    
-                    {/* Image Comparison Component */}
-                    <ImageCompare
-                      beforeImage="/images/hero/hero-before.jpg"
-                      afterImage="/images/hero/hero-after.jpg"
-                      alt="See how your pet's photo transforms into AI art"
-                      aspectRatio="aspect-[3/4]"
-                    />
-                  </div>
-                </div>
-                
-                {/* Frame Details */}
-                <div className="absolute bottom-6 left-1/2 h-1 w-8 -translate-x-1/2 rounded-full bg-gray-700"></div>
-              </div>
-            </div>
+            <PhotoCarousel />
           </motion.div>
         </div>
       </div>

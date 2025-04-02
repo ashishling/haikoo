@@ -49,23 +49,16 @@ export function HowItWorks() {
             <motion.div
               key={step.title}
               variants={item}
-              className="relative flex flex-col items-center space-y-4 rounded-2xl bg-background p-6 text-center shadow-sm"
+              className="relative flex flex-col items-center space-y-4 rounded-[2rem] bg-white p-6 text-center shadow-2xl"
             >
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
                 <span className="text-4xl font-bold text-primary">{index + 1}</span>
               </div>
-              <h3 className="text-xl font-semibold">{step.title}</h3>
+              <h3 className="text-xl font-semibold text-foreground">{step.title}</h3>
               <p className="text-muted-foreground">{step.description}</p>
             </motion.div>
           ))}
         </motion.div>
-
-        {/* Visual Connectors (Desktop Only) */}
-        <div className="relative mt-8 hidden lg:block">
-          <div className="absolute left-[25%] top-1/2 h-0.5 w-[25%] -translate-y-1/2 bg-border" />
-          <div className="absolute left-[50%] top-1/2 h-0.5 w-[25%] -translate-y-1/2 bg-border" />
-          <div className="absolute left-[75%] top-1/2 h-0.5 w-[25%] -translate-y-1/2 bg-border" />
-        </div>
       </div>
     </section>
   )
