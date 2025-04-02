@@ -2,10 +2,18 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectCreative } from 'swiper/modules'
+import dynamic from 'next/dynamic'
+
+// Dynamically import Swiper components with no SSR
+const Swiper = dynamic(() => import('swiper/react').then(mod => mod.Swiper), { ssr: false })
+const SwiperSlide = dynamic(() => import('swiper/react').then(mod => mod.SwiperSlide), { ssr: false })
+
+// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/effect-creative'
+
+// Import required modules
+import { Autoplay, EffectCreative } from 'swiper/modules'
 
 const photos = [
   '/images/carousel/slide-1.png',
