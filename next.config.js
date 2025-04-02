@@ -6,15 +6,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  transpilePackages: ['swiper'],
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'swiper/css': require.resolve('swiper/css'),
-      'swiper/css/effect-creative': require.resolve('swiper/css/effect-creative'),
-    }
-    return config
-  },
+  transpilePackages: ['swiper']
 }
 
 module.exports = nextConfig

@@ -3,24 +3,21 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import type { ComponentType } from 'react'
 
-// Dynamically import Swiper components with no SSR
-const Swiper = dynamic(() => import('swiper/react').then(mod => mod.Swiper), { ssr: false })
-const SwiperSlide = dynamic(() => import('swiper/react').then(mod => mod.SwiperSlide), { ssr: false })
+interface SwiperProps {
+  photos: string[]
+}
 
-// Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/effect-creative'
-
-// Import required modules
-import { Autoplay, EffectCreative } from 'swiper/modules'
+const SwiperWithNoSSR = dynamic<SwiperProps>(() => import('./swiper-component'), {
+  ssr: false,
+})
 
 const photos = [
   '/images/carousel/slide-1.png',
   '/images/carousel/slide-2.png',
   '/images/carousel/slide-3.png',
   '/images/carousel/slide-4.png',
-  
   // Add more slides as needed
 ]
 
@@ -37,39 +34,7 @@ export function PhotoCarousel() {
             <div className="absolute inset-0 z-10 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
             
             {/* Swiper Carousel */}
-            <Swiper
-              modules={[Autoplay, EffectCreative]}
-              effect="creative"
-              creativeEffect={{
-                prev: {
-                  opacity: 0,
-                  translate: ['-20%', 0, -1],
-                },
-                next: {
-                  opacity: 0,
-                  translate: ['100%', 0, 0],
-                },
-              }}
-              speed={1500}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              loop={true}
-              className="h-full w-full"
-            >
-              {photos.map((photo, index) => (
-                <SwiperSlide key={index}>
-                  <Image
-                    src={photo}
-                    alt={`Slide ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <SwiperWithNoSSR photos={photos} />
           </div>
         </div>
         
