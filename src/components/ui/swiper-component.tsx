@@ -14,8 +14,8 @@ interface SwiperComponentProps {
 }
 
 export default function SwiperComponent({ photos }: SwiperComponentProps) {
-  const [isLoaded, setIsLoaded] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     setMounted(true)
@@ -25,8 +25,12 @@ export default function SwiperComponent({ photos }: SwiperComponentProps) {
     return null
   }
 
+  const handleImageLoad = (index: number) => {
+    setLoadedImages(prev => new Set([...prev, index]))
+  }
+
   return (
-    <div className="w-full max-w-full overflow-hidden aspect-[9/16]">
+    <div className="w-full h-full overflow-hidden">
       <Swiper
         modules={[Autoplay, EffectCreative]}
         effect="creative"
@@ -58,15 +62,20 @@ export default function SwiperComponent({ photos }: SwiperComponentProps) {
                 src={photo}
                 alt={`Slide ${index + 1}`}
                 fill
-                className="object-cover"
+                className={`object-cover transition-opacity duration-300 ${
+                  loadedImages.has(index) ? 'opacity-100' : 'opacity-0'
+                }`}
                 priority={index === 0}
                 loading={index === 0 ? "eager" : "lazy"}
-                onLoadingComplete={() => {
-                  if (index === 0) setIsLoaded(true)
-                }}
+                onLoadingComplete={() => handleImageLoad(index)}
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 quality={85}
               />
+              {!loadedImages.has(index) && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black">
+                  <div className="w-8 h-8 border-4 border-gray-600 border-t-white rounded-full animate-spin" />
+                </div>
+              )}
             </div>
           </SwiperSlide>
         ))}

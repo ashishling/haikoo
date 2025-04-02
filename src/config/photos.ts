@@ -1,7 +1,6 @@
 export const photos = [
-  "/images/carousel/1.jpg",
-  "/images/carousel/2.jpg",
-  "/images/carousel/3.jpg",
-  "/images/carousel/4.jpg",
-  "/images/carousel/5.jpg",
+  "/images/carousel/slide-1.png",
+  "/images/carousel/slide-2.png",
+  "/images/carousel/slide-3.png",
+  "/images/carousel/slide-4.png",
 ] 
