@@ -29,7 +29,7 @@ export const siteConfig = {
   // Hero Section
   hero: {
     title: "Haikoo, a gen-AI art frame for pet parents.",
-    description: "This isn't just an app. Haikoo is a wall-mounted digital photo frame that uses Gen-AI to create a new portrait of your pet daily and streams it straight to your home.",
+    description: "This isn't just an app. Haikoo is a desktop/wall-mounted digital photo frame that uses Gen-AI to create a new portrait of your pet daily and streams it straight to your home.",
     ctaButton: {
       text: "Join the Waitlist",
       href: "/#join"
