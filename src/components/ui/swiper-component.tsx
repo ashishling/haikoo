@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, EffectCreative } from 'swiper/modules'
@@ -15,9 +15,18 @@ interface SwiperComponentProps {
 
 export default function SwiperComponent({ photos }: SwiperComponentProps) {
   const [isLoaded, setIsLoaded] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
-    <div className="w-full max-w-full overflow-hidden">
+    <div className="w-full max-w-full overflow-hidden aspect-[9/16]">
       <Swiper
         modules={[Autoplay, EffectCreative]}
         effect="creative"
@@ -37,13 +46,13 @@ export default function SwiperComponent({ photos }: SwiperComponentProps) {
           disableOnInteraction: false,
         }}
         loop={true}
-        className="h-full w-full max-w-full"
+        className="h-full w-full"
         updateOnWindowResize={true}
         observer={true}
         observeParents={true}
       >
         {photos.map((photo, index) => (
-          <SwiperSlide key={index} className="w-full">
+          <SwiperSlide key={index} className="w-full h-full">
             <div className="relative w-full h-full">
               <Image
                 src={photo}
